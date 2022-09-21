@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.checkbox-error {
+  --chkbg: var(--er);
+  --chkfg: var(--erc);
+  @apply border-error hover:border-error;
+}
+
+.checkbox-error:focus-visible {
+  outline: 2px solid hsl(var(--p));
+}
+
+.checkbox-error:checked,
+.checkbox-error[checked="true"],
+.checkbox-error[aria-checked=true] {
+  @apply border-error bg-error text-error-content;
+}
