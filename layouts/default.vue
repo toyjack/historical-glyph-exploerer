@@ -6,8 +6,8 @@
     <header class="bg-gradient-to-r from-fuchsia-400 to-violet-800 flex flex-col justify-between">
       <div class="flex flex-row justify-between px-2 pt-7 pb-2 md:p-20 ">
         <div class="flex flex-col">
-          <h6 class="text-sm md:text-xl text-white">歴史資料・古典籍の字形探索</h6>
-          <h3 class="text-left text-xl md:text-3xl font-serif text-white  uppercase">
+          <h6 class="text-sm md:text-xl text-white drop-shadow-lg">歴史資料・古典籍の字形探索</h6>
+          <h3 class="text-left text-xl md:text-3xl font-serif text-white uppercase drop-shadow-lg">
             <NuxtLink to="/" class="hover:underline">Historical Glyph Explorer</NuxtLink>
           </h3>
         </div>

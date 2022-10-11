@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useSettingStore = defineStore('setting', {
+export const useSettingStore = defineStore("setting", {
   state: () => ({
     variants_checked: false,
     hdic_checked: true,
@@ -8,10 +8,11 @@ export const useSettingStore = defineStore('setting', {
     uthi_checked: true,
     nijil_checked: true,
     ifShowFilter: true,
+    ifOnlyDelegate: true,
   }),
   actions: {
     increment() {
-      this.count++
+      this.count++;
     },
   },
-})
+});
