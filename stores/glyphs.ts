@@ -53,38 +53,12 @@ export const useGlyphStore = defineStore("glyphs", {
 
       if (this.glyphs) {
         await this.convAllYear();
-        this.genScatterChartData();
 
         this.glyphs = this.glyphs.sort((a: Glyph, b: Glyph) => a.date - b.date);
       }
       this.pending = false;
     },
 
-    genScatterChartData() {
-      // {label:'', data:[],color:''}
-      for (const glyph of this.glyphs) {
-        if (glyph.date) {
-          if (glyph.date == 9999) continue;
-
-          const label = glyph.data_source;
-
-          const foundIndex = this.dateChart.findIndex(
-            (date) => date.x == glyph.date && date.label == label
-          );
-          // console.log(foundIndex);
-          if (foundIndex > 0) {
-            this.dateChart[foundIndex].y += 1;
-          } else {
-            this.dateChart.push({
-              label,
-              x: glyph.date,
-              y: 1,
-            });
-          }
-        }
-      }
-      // console.log(this.dateChart)
-    },
     async fetchHdic(kanji: string) {
       // tsj
       // https://viewer.hdic.jp/api/tsj/search?entry=%E4%BD%9B&def=
