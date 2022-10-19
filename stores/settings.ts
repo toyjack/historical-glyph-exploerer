@@ -9,6 +9,7 @@ export const useSettingStore = defineStore("setting", {
     nijil_checked: true,
     ifShowFilter: true,
     ifOnlyDelegate: true,
+    ifShowChart:true,
   }),
   actions: {
     increment() {

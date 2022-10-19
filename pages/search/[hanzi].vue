@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useGlyphStore } from '@/stores/glyphs'
+import { useSettingStore } from '@/stores/settings'
 
 const glyphStore = useGlyphStore()
+const settingStore = useSettingStore()
 const { glyphs, pending } = storeToRefs(glyphStore)
+const { ifShowChart } = storeToRefs(settingStore)
 
 const route = useRoute()
 const hanzi = route.params.hanzi as string
@@ -24,7 +27,7 @@ function year(yearNum:number){
       <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
     </div>
     <div v-else>
-      <YearsChart />
+      <YearsChart v-if="ifShowChart" />
       <div class="divider">検索結果: {{ glyphs.length }}</div>
       <!-- <div>{{glyphs}}</div> -->
       

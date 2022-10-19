@@ -5,7 +5,7 @@ import { useGlyphStore } from '~~/stores/glyphs';
 
 const glyphStore = useGlyphStore()
 const settingStore = useSettingStore()
-const { variants_checked, hdic_checked, hng_checked, uthi_checked, nijil_checked, ifOnlyDelegate } = storeToRefs(settingStore)
+const { variants_checked, hdic_checked, hng_checked, uthi_checked, nijil_checked, ifOnlyDelegate, ifShowChart } = storeToRefs(settingStore)
 
 const route = useRoute()
 const urlHanzi = route.params.hanzi as string
@@ -74,7 +74,16 @@ function move(hanzi: string) {
         </div>
       </div>
 
-      <!-- <div class="divider"></div> -->
+      <div class="divider"></div>
+
+      <div class="flex-1">
+        <div class="form-control">
+          <label class="label cursor-pointer">
+            <span class="label-text">年代分布表</span>
+            <input type="checkbox" class="toggle toggle-primary" v-model="ifShowChart" />
+          </label>
+        </div>
+      </div>
 
       <!-- <div class="flex flex-col w-full">
         <div class="form-control w-full max-w-md">
