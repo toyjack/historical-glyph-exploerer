@@ -3,29 +3,10 @@ import { UthiBody } from '@/types/UthiBody'
 import { Nijil } from '@/types/Nijil'
 import { Hutime } from '@/types/Hutime'
 import { Hng } from '@/types/HNG'
+import { Glyph } from "@/types/Glyphs";
 import { HdicSyp, HdicKtb, HdicTsj } from '@/types/Hdic'
-import NijilBooks from '@/assets/json/nijil_book.json'
 import { useSettingStore as useSetting } from './settings'
-
-interface Glyph {
-  id: string,
-  data_source: string,
-  date: number,
-  date_jpn: string,
-  book_name: string,
-  thumbnail_url: string,
-  manifest_url: string,
-  source_virewer_link: string,
-  creator: string,
-  rights: string,
-  rights_url: string
-}
-
-interface ChartPoint {
-  label: string,
-  x: number,
-  y:number
-}
+import NijilBooks from '@/assets/json/nijil_book.json'
 
 export const useGlyphStore = defineStore("glyphs", {
   state: () => ({
@@ -35,7 +16,6 @@ export const useGlyphStore = defineStore("glyphs", {
     divisions: <string[]>[],
     dates: <string[]>[],
     dates_jpn: <string[]>[],
-    dateChart: <ChartPoint[]>[],
   }),
   actions: {
     async fetchAll(character: string) {

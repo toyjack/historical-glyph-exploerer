@@ -23,7 +23,7 @@ const uthiData = labels.map(i => {
 const nijilData = labels.map(i => {
   return glyphs.value.filter(item => item.data_source == 'nijil' && item.date == i).length || 0
 })
-console.log({ labels, hdicData, hngData, uthiData, nijilData })
+// console.log({ labels, hdicData, hngData, uthiData, nijilData })
 const yearsData = {
   labels,
   datasets: [
