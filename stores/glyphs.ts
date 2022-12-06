@@ -18,6 +18,33 @@ export const useGlyphStore = defineStore("glyphs", {
     dates: <string[]>[],
     dates_jpn: <string[]>[],
   }),
+  getters: {
+    sortedByDate(state) {
+      let sorted = state.glyphs.sort((a, b) => a.date - b.date);
+      sorted = sorted.map((item)=>{
+        if (!item.date){
+          item.date = 9999;
+          return item
+        }
+        return item
+      })
+      console.log(sorted)
+      return sorted;
+    },
+    chartLabels() {
+      const labels = [
+        ...new Set(
+          this.sortedByDate.map((i) => {
+            // handle the case where the year is unknown
+            if (!i.date) return 9999;
+            return Number(i.date);
+          })
+        ),
+      ].sort((a, b) => a - b);
+      labels[labels.length-1] = "不明";
+      return labels;
+    },
+  },
   actions: {
     async fetchAll(character: string) {
       this.$reset();
@@ -48,6 +75,9 @@ export const useGlyphStore = defineStore("glyphs", {
             (a: Glyph, b: Glyph) => a.date - b.date
           );
           this.pending = false;
+        })
+        .catch((e) => {
+          console.log(e);
         });
     },
 
@@ -56,22 +86,44 @@ export const useGlyphStore = defineStore("glyphs", {
       // https://viewer.hdic.jp/api/tsj/search?entry=%E4%BD%9B&def=
       // https://viewer.hdic.jp/api/v1/tsj/search?entry=%E4%BA%AC&def=
       // https://viewer.hdic.jp/api/v1/tsj/imgurl?entry=%E4%BA%AC
-      // const tsjEntryUrl =`https://viewer.hdic.jp/api/v1/tsj/search?entry=${kanji}&def=`
-      // const { data: tsjEntry, error:tsjEntryError } = await useFetch(tsjEntryUrl, { initialCache: false, server: false })
       const tsjImgUrlFetchUrl = `https://viewer.hdic.jp/api/v1/tsj/imgurl?entry=${kanji}`;
       const { data: tsjImgUrl, error: tsjImgUrlError } = await useFetch<String>(
         tsjImgUrlFetchUrl,
         { initialCache: false, server: false }
       );
+
       // TODO: error check
-      if (!tsjImgUrlError) {
+      const glyph: Glyph = {
+        id: "HDIC_TSJ_" + kanji,
+        data_source: "hdic",
+        date: 898,
+        date_jpn: "昌泰元年",
+        book_name: "天治本新撰字鏡",
+        thumbnail_url: String(tsjImgUrl.value),
+        manifest_url: "",
+        source_virewer_link: "",
+        creator: "",
+        rights: "",
+        rights_url: "",
+      };
+      this.glyphs.push(glyph);
+
+      // syp
+      // https://viewer.hdic.jp/api/v1/syp/search?entry=%E4%BD%9B&def=
+      // https://viewer.hdic.jp/img/syp/a025a074
+      const sypEntryUrl = `https://viewer.hdic.jp/api/v1/syp/search?entry=${kanji}&def=`;
+      const { data: sypEntry, error: sypEntryError } = await useFetch<
+        HdicSyp[]
+      >(sypEntryUrl, { initialCache: false, server: false });
+      for (const item of sypEntry.value) {
+        const sypImgUrl = `https://viewer.hdic.jp/img/syp/${item.SYID}`;
         const glyph: Glyph = {
-          id: "HDIC_TSJ_" + kanji,
+          id: "HDIC_SYP_" + kanji,
           data_source: "hdic",
-          date: 898,
-          date_jpn: "昌泰元年",
-          book_name: "天治本新撰字鏡",
-          thumbnail_url: tsjImgUrl.value,
+          date: 1013,
+          date_jpn: "",
+          book_name: "宋本玉篇",
+          thumbnail_url: sypImgUrl,
           manifest_url: "",
           source_virewer_link: "",
           creator: "",
@@ -81,33 +133,6 @@ export const useGlyphStore = defineStore("glyphs", {
         this.glyphs.push(glyph);
       }
 
-      // syp
-      // https://viewer.hdic.jp/api/v1/syp/search?entry=%E4%BD%9B&def=
-      // https://viewer.hdic.jp/img/syp/a025a074
-      const sypEntryUrl = `https://viewer.hdic.jp/api/v1/syp/search?entry=${kanji}&def=`;
-      const { data: sypEntry, error: sypEntryError } = await useFetch<
-        HdicSyp[]
-      >(sypEntryUrl, { initialCache: false, server: false });
-      if (!sypEntryError) {
-        for (const item of sypEntry.value) {
-          const sypImgUrl = `https://viewer.hdic.jp/img/syp/${item.SYID}`;
-          const glyph: Glyph = {
-            id: "HDIC_SYP_" + kanji,
-            data_source: "hdic",
-            date: 1013,
-            date_jpn: "",
-            book_name: "宋本玉篇",
-            thumbnail_url: sypImgUrl,
-            manifest_url: "",
-            source_virewer_link: "",
-            creator: "",
-            rights: "",
-            rights_url: "",
-          };
-          this.glyphs.push(glyph);
-        }
-      }
-
       // ktb
       // https://viewer.hdic.jp/api/v1/ktb/search?entry=%E4%BD%9B&def=
       // https://viewer.hdic.jp/img/ktb/1_052_A13.jpg
@@ -115,24 +140,22 @@ export const useGlyphStore = defineStore("glyphs", {
       const { data: ktbEntry, error: ktbEntryError } = await useFetch<
         HdicKtb[]
       >(ktbEntryUrl, { initialCache: false, server: false });
-      if (!ktbEntryError) {
-        for (const item of ktbEntry.value) {
-          const ktbImgUrl = `https://viewer.hdic.jp/img/ktb/${item.TBID}.jpg`;
-          const glyph: Glyph = {
-            id: "HDIC_KTB_" + kanji,
-            data_source: "hdic",
-            date: 1114,
-            date_jpn: "",
-            book_name: "高山寺本篆隷万象名義",
-            thumbnail_url: ktbImgUrl,
-            manifest_url: "",
-            source_virewer_link: "",
-            creator: "",
-            rights: "",
-            rights_url: "",
-          };
-          this.glyphs.push(glyph);
-        }
+      for (const item of ktbEntry.value) {
+        const ktbImgUrl = `https://viewer.hdic.jp/img/ktb/${item.TBID}.jpg`;
+        const glyph: Glyph = {
+          id: "HDIC_KTB_" + kanji,
+          data_source: "hdic",
+          date: 1114,
+          date_jpn: "",
+          book_name: "高山寺本篆隷万象名義",
+          thumbnail_url: ktbImgUrl,
+          manifest_url: "",
+          source_virewer_link: "",
+          creator: "",
+          rights: "",
+          rights_url: "",
+        };
+        this.glyphs.push(glyph);
       }
     },
     async fetchHng(kanji: string) {
@@ -142,37 +165,36 @@ export const useGlyphStore = defineStore("glyphs", {
         initialCache: false,
         server: false,
       });
-      if (!error) {
-        const resultList = data.value["list"];
-        resultList.forEach((item) => {
-          // console.log(item[0])
-          // TODO: fix array in array
-          const glyph: Glyph = {
-            id: item[0].id,
-            data_source: "hng",
-            date: item[0].source.date,
-            date_jpn: "",
-            book_name: item[0].source.name,
-            thumbnail_url: item[0].thumbnail_url,
-            manifest_url: item[0].manifest_url,
-            source_virewer_link: item[0].link,
-            creator: item[0].creator,
-            rights: item[0].rights,
-            rights_url: item[0].rights_url,
-          };
-          this.glyphs.push(glyph);
-        });
-      }
+      const resultList = data.value["list"];
+      resultList.forEach((item) => {
+        // TODO: fix array in array
+        const glyph: Glyph = {
+          id: item[0].id,
+          data_source: "hng",
+          date: Number(item[0].source.date),
+          date_jpn: "",
+          book_name: item[0].source.name,
+          thumbnail_url: item[0].thumbnail_url,
+          manifest_url: item[0].manifest_url,
+          source_virewer_link: item[0].link,
+          creator: item[0].creator,
+          rights: item[0].rights,
+          rights_url: item[0].rights_url,
+        };
+        this.glyphs.push(glyph);
+      });
     },
     async fetchNijil(kanji: string, delegate = false) {
       const fetchUrl = `https://lab.nijl.ac.jp/jikei/api/char/search?delegate=${
         delegate ? "true" : "false"
       }&limit=-1&q=${kanji}`;
-      const { data } = await useFetch<Nijil>(fetchUrl, {
+      const { data, error } = await useFetch<Nijil>(fetchUrl, {
         initialCache: false,
         server: false,
       });
-      const resultList = data.value["list"];
+
+      const resultList = data.value.list;
+
       resultList.forEach((item) => {
         const foundDate = parseInt(
           NijilBooks.find((book) => book.book_id == item.source.bid).date,
@@ -246,7 +268,10 @@ export const useGlyphStore = defineStore("glyphs", {
           // [C.E. 1578]歴代亀鑑(五四通)
           date = date.replace("C.E. ", "");
           glyph.date = parseInt(date, 10);
-        } else glyph.date = undefined;
+        } else {
+          // glyph.date = undefined;
+          glyph.date = 9999;
+        }
       }
 
       // TODO: move to single function
@@ -266,12 +291,6 @@ export const useGlyphStore = defineStore("glyphs", {
         a - b;
       });
       this.dates = dates;
-    },
-  },
-  getters: {
-    sortedByDate(state) {
-      // return state.glyphs.sort((a, b) => a.date - b.date);
-      return state.glyphs.sort((a, b) => a.date - b.date);
     },
   },
 });
@@ -319,7 +338,7 @@ async function getUthi(hanzi: string, delegate = false, position = 1) {
   const fetchUrl = `https://clioapi.hi.u-tokyo.ac.jp/shipsapi/v1/W34/character/${hanzi}?delegate=${
     delegate ? "1" : "0"
   }&position=${position.toString()}`;
-  const { data } = await useFetch<UthiBody>(fetchUrl, {
+  const { data, error } = await useFetch<UthiBody>(fetchUrl, {
     initialCache: false,
     server: false,
   });
