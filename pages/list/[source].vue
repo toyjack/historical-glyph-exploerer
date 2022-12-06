@@ -1,12 +1,15 @@
 <script setup lang="ts">
 const route = useRoute()
-const selected = ref("")
+const source = route.params.source || ""
 
-selected.value = route.params.source as string || ""
+const selected = ref("")
+if (route.path.split("/")[3]) {
+  selected.value = decodeURI(route.path.split("/")[3])
+}
 
 function changeSelected() {
   return navigateTo({
-    path: '/list/' + selected.value,
+    path: '/list/'+source +"/" + selected.value,
   })
 }
 </script>
@@ -18,13 +21,12 @@ function changeSelected() {
         <span class="label-text">表示する内容</span>
       </label>
       <select class="select select-primary max-w-xs" v-model="selected" @change="changeSelected()">
-        <option disabled selected value=''>APIソースを選ぶ</option>
-        <option value="hng">HNG</option>
-        <option value="uthi">電子くずし字字典</option>
-        <option value="nijil">国文研字形検索β</option>
+        <option disabled selected value=''>文字種類を選ぶ</option>
+        <option value="kana">かな</option>
+        <option value="kanji">漢字</option>
       </select>
     </div>
-
+  
     <NuxtPage />
   </div>
 </template>

@@ -9,16 +9,16 @@ import NijilBooks from "@/data/nijil_book.json";
 export default defineEventHandler(async (event) => {
   const sources = ["hdic", "hng", "uthi", "nijil"] as const;
   const query = getQuery(event);
-  const kanji = String(query["kanji"]);
+  const character = String(query["character"]);
   const sourceStr = String(query["sources"]) || "hdic,hng,uthi,nijil"; // default to search all
-  const delegate: boolean = query["delegate"] == "true" && true; // default to true, means only search delegate characters
+  const isDelegate: boolean = query["isDelegate"] == "true" && true; // default to true, means only search delegate characters
   const sourceList: string[] = sourceStr.split(",");
 
-  // kanji check
-  if (kanji.length != 1) {
+  // character check
+  if (character.length != 1) {
     throw createError({
       statusCode: 400,
-      statusMessage: "kanji length is not 1",
+      statusMessage: "character length is not 1",
     });
   }
   // sources check
@@ -36,28 +36,26 @@ export default defineEventHandler(async (event) => {
 
   for (let source of sourceList) {
     if (source == "hdic") {
-      const hdicResult = await fetchHdic(kanji);
+      const hdicResult = await fetchHdic(character);
       results = results.concat(hdicResult);
     }
     if (source == "hng") {
-      const hngResult = await fetchHng(kanji);
+      const hngResult = await fetchHng(character);
       results = results.concat(hngResult);
     }
     if (source == "uthi") {
-      const uthiResult = await fetchUthi(kanji, delegate);
+      const uthiResult = await fetchUthi(character, isDelegate);
       results = results.concat(uthiResult);
     }
     if (source == "nijil") {
-      const nijilResult = await fetchNijil(kanji, delegate);
+      const nijilResult = await fetchNijil(character, isDelegate);
       results = results.concat(nijilResult);
     }
   }
-  
-  console.log(results.length);
-  
+
   return {
-    kanji,
-    delegate,
+    character,
+    isDelegate,
     sourceList,
     results,
   };

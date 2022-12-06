@@ -19,7 +19,6 @@
       <div class="tabs md:px-20">
         <NuxtLink class="tab tab-lifted" to="/" activeClass="tab-active">ホーム</NuxtLink>
         <NuxtLink class="tab tab-lifted" to="/search" activeClass="tab-active">検索</NuxtLink>
-        <NuxtLink class="tab tab-lifted" to="/ids" activeClass="tab-active">IDS</NuxtLink>
         <NuxtLink class="tab tab-lifted" to="/list" activeClass="tab-active">リスト</NuxtLink>
         <NuxtLink class="tab tab-lifted" to="/about" activeClass="tab-active">アバウト</NuxtLink>
       </div>

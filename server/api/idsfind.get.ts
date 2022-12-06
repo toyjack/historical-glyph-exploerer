@@ -5,6 +5,8 @@ export default defineEventHandler((event) => {
   const term = query["term"] as string
   const results = idsfind(term)
 
+  // TODO: add error handling
+
   return {
     search_term: term,
     results

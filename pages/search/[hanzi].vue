@@ -5,7 +5,7 @@ import { useSettingStore } from '@/stores/settings'
 
 const glyphStore = useGlyphStore()
 const settingStore = useSettingStore()
-const { glyphs, pending } = storeToRefs(glyphStore)
+const { glyphs, pending, sortedGlyphs } = storeToRefs(glyphStore)
 const { ifShowChart } = storeToRefs(settingStore)
 
 const route = useRoute()
@@ -19,6 +19,8 @@ function year(yearNum:number){
   if (yearNum==9999 || isNaN(yearNum)) return "Unknown"
   else return yearNum
 }
+
+
 </script>
 
 <template>
@@ -32,7 +34,7 @@ function year(yearNum:number){
       <!-- <div>{{glyphs}}</div> -->
       
       <div class="flex flex-wrap">
-        <div v-for="item of glyphs"
+        <div v-for="item of sortedGlyphs"
           class="rounded-sm shadow-lg w-1/3 md:w-1/6 flex flex-col justify-between p-1 md:p-2 bg-white border hover:border-blue-300 hover:border-2">
           <a :href="'/glyph/' + item.id" class="cursor-pointer flex flex-col  justify-between" target="blank">
             <img :src="item.thumbnail_url" alt="" loading="lazy" class="w-full items-center justify-start">

@@ -1,16 +1,17 @@
-import { defineStore } from 'pinia'
-import { UthiBody } from '@/types/UthiBody'
-import { Nijil } from '@/types/Nijil'
-import { Hutime } from '@/types/Hutime'
-import { Hng } from '@/types/HNG'
+import { defineStore } from "pinia";
+import { UthiBody } from "@/types/UthiBody";
+import { Nijil } from "@/types/Nijil";
+import { Hutime } from "@/types/Hutime";
+import { Hng } from "@/types/HNG";
 import { Glyph } from "@/types/Glyphs";
-import { HdicSyp, HdicKtb, HdicTsj } from '@/types/Hdic'
-import { useSettingStore as useSetting } from './settings'
-import NijilBooks from '@/assets/json/nijil_book.json'
+import { HdicSyp, HdicKtb, HdicTsj } from "@/types/Hdic";
+import { useSettingStore as useSetting } from "./settings";
+import NijilBooks from "@/assets/json/nijil_book.json";
 
 export const useGlyphStore = defineStore("glyphs", {
   state: () => ({
     glyphs: <Glyph[]>[],
+    sortedGlyphs: <Glyph[]>[],
     pending: false,
     occupations: <string[]>[],
     divisions: <string[]>[],
@@ -24,19 +25,30 @@ export const useGlyphStore = defineStore("glyphs", {
 
       const setting = useSetting();
       const ifSearchDelegate = useSetting().ifOnlyDelegate;
-      if (setting.hdic_checked) await this.fetchHdic(character);
-      if (setting.hng_checked) await this.fetchHng(character);
-      if (setting.nijil_checked)
-        await this.fetchNijil(character, ifSearchDelegate);
-      if (setting.uthi_checked)
-        await this.fetchUthi(character, ifSearchDelegate);
 
-      if (this.glyphs) {
-        await this.convAllYear();
+      const hdicPromise = setting.hdic_checked
+        ? this.fetchHdic(character)
+        : Promise.resolve();
+      const hngPromise = setting.hng_checked
+        ? this.fetchHng(character)
+        : Promise.resolve();
+      const nijilPromise = setting.nijil_checked
+        ? this.fetchNijil(character, ifSearchDelegate)
+        : Promise.resolve();
+      const uthiPromise = setting.uthi_checked
+        ? this.fetchUthi(character, ifSearchDelegate)
+        : Promise.resolve();
 
-        this.glyphs = this.glyphs.sort((a: Glyph, b: Glyph) => a.date - b.date);
-      }
-      this.pending = false;
+      Promise.all([hdicPromise, hngPromise, nijilPromise, uthiPromise])
+        .then(() => {
+          this.convAllYear();
+        })
+        .then(() => {
+          this.sortedGlyphs = this.glyphs.sort(
+            (a: Glyph, b: Glyph) => a.date - b.date
+          );
+          this.pending = false;
+        });
     },
 
     async fetchHdic(kanji: string) {
@@ -47,27 +59,27 @@ export const useGlyphStore = defineStore("glyphs", {
       // const tsjEntryUrl =`https://viewer.hdic.jp/api/v1/tsj/search?entry=${kanji}&def=`
       // const { data: tsjEntry, error:tsjEntryError } = await useFetch(tsjEntryUrl, { initialCache: false, server: false })
       const tsjImgUrlFetchUrl = `https://viewer.hdic.jp/api/v1/tsj/imgurl?entry=${kanji}`;
-      const { data: tsjImgUrl, error: tsjImgUrlError } = await useFetch(
+      const { data: tsjImgUrl, error: tsjImgUrlError } = await useFetch<String>(
         tsjImgUrlFetchUrl,
         { initialCache: false, server: false }
       );
       // TODO: error check
-      // if (!tsjImgUrlError){
-      const glyph: Glyph = {
-        id: "HDIC_TSJ_" + kanji,
-        data_source: "hdic",
-        date: 898,
-        date_jpn: "昌泰元年",
-        book_name: "天治本新撰字鏡",
-        thumbnail_url: tsjImgUrl.value,
-        manifest_url: "",
-        source_virewer_link: "",
-        creator: "",
-        rights: "",
-        rights_url: "",
-      };
-      this.glyphs.push(glyph);
-      // }
+      if (!tsjImgUrlError) {
+        const glyph: Glyph = {
+          id: "HDIC_TSJ_" + kanji,
+          data_source: "hdic",
+          date: 898,
+          date_jpn: "昌泰元年",
+          book_name: "天治本新撰字鏡",
+          thumbnail_url: tsjImgUrl.value,
+          manifest_url: "",
+          source_virewer_link: "",
+          creator: "",
+          rights: "",
+          rights_url: "",
+        };
+        this.glyphs.push(glyph);
+      }
 
       // syp
       // https://viewer.hdic.jp/api/v1/syp/search?entry=%E4%BD%9B&def=
@@ -76,23 +88,26 @@ export const useGlyphStore = defineStore("glyphs", {
       const { data: sypEntry, error: sypEntryError } = await useFetch<
         HdicSyp[]
       >(sypEntryUrl, { initialCache: false, server: false });
-      for (const item of sypEntry.value) {
-        const sypImgUrl = `https://viewer.hdic.jp/img/syp/${item.SYID}`;
-        const glyph: Glyph = {
-          id: "HDIC_SYP_" + kanji,
-          data_source: "hdic",
-          date: 1013,
-          date_jpn: "",
-          book_name: "宋本玉篇",
-          thumbnail_url: sypImgUrl,
-          manifest_url: "",
-          source_virewer_link: "",
-          creator: "",
-          rights: "",
-          rights_url: "",
-        };
-        this.glyphs.push(glyph);
+      if (!sypEntryError) {
+        for (const item of sypEntry.value) {
+          const sypImgUrl = `https://viewer.hdic.jp/img/syp/${item.SYID}`;
+          const glyph: Glyph = {
+            id: "HDIC_SYP_" + kanji,
+            data_source: "hdic",
+            date: 1013,
+            date_jpn: "",
+            book_name: "宋本玉篇",
+            thumbnail_url: sypImgUrl,
+            manifest_url: "",
+            source_virewer_link: "",
+            creator: "",
+            rights: "",
+            rights_url: "",
+          };
+          this.glyphs.push(glyph);
+        }
       }
+
       // ktb
       // https://viewer.hdic.jp/api/v1/ktb/search?entry=%E4%BD%9B&def=
       // https://viewer.hdic.jp/img/ktb/1_052_A13.jpg
@@ -100,53 +115,59 @@ export const useGlyphStore = defineStore("glyphs", {
       const { data: ktbEntry, error: ktbEntryError } = await useFetch<
         HdicKtb[]
       >(ktbEntryUrl, { initialCache: false, server: false });
-      for (const item of ktbEntry.value) {
-        const ktbImgUrl = `https://viewer.hdic.jp/img/ktb/${item.TBID}.jpg`;
-        const glyph: Glyph = {
-          id: "HDIC_KTB_" + kanji,
-          data_source: "hdic",
-          date: 1114,
-          date_jpn: "",
-          book_name: "高山寺本篆隷万象名義",
-          thumbnail_url: ktbImgUrl,
-          manifest_url: "",
-          source_virewer_link: "",
-          creator: "",
-          rights: "",
-          rights_url: "",
-        };
-        this.glyphs.push(glyph);
+      if (!ktbEntryError) {
+        for (const item of ktbEntry.value) {
+          const ktbImgUrl = `https://viewer.hdic.jp/img/ktb/${item.TBID}.jpg`;
+          const glyph: Glyph = {
+            id: "HDIC_KTB_" + kanji,
+            data_source: "hdic",
+            date: 1114,
+            date_jpn: "",
+            book_name: "高山寺本篆隷万象名義",
+            thumbnail_url: ktbImgUrl,
+            manifest_url: "",
+            source_virewer_link: "",
+            creator: "",
+            rights: "",
+            rights_url: "",
+          };
+          this.glyphs.push(glyph);
+        }
       }
     },
     async fetchHng(kanji: string) {
       // https://search.hng-data.org/api/v2/search/character/%E4%BA%AC
       const fetchUrl = `https://search.hng-data.org/api/v2/search/character/${kanji}`;
-      const { data } = await useFetch<Hng>(fetchUrl, {
+      const { data, error } = await useFetch<Hng>(fetchUrl, {
         initialCache: false,
         server: false,
       });
-      const resultList = data.value["list"];
-      resultList.forEach((item) => {
-        // console.log(item[0])
-        // TODO: fix array in array
-        const glyph: Glyph = {
-          id: item[0].id,
-          data_source: "hng",
-          date: item[0].source.date,
-          date_jpn: "",
-          book_name: item[0].source.name,
-          thumbnail_url: item[0].thumbnail_url,
-          manifest_url: item[0].manifest_url,
-          source_virewer_link: item[0].link,
-          creator: item[0].creator,
-          rights: item[0].rights,
-          rights_url: item[0].rights_url,
-        };
-        this.glyphs.push(glyph);
-      });
+      if (!error) {
+        const resultList = data.value["list"];
+        resultList.forEach((item) => {
+          // console.log(item[0])
+          // TODO: fix array in array
+          const glyph: Glyph = {
+            id: item[0].id,
+            data_source: "hng",
+            date: item[0].source.date,
+            date_jpn: "",
+            book_name: item[0].source.name,
+            thumbnail_url: item[0].thumbnail_url,
+            manifest_url: item[0].manifest_url,
+            source_virewer_link: item[0].link,
+            creator: item[0].creator,
+            rights: item[0].rights,
+            rights_url: item[0].rights_url,
+          };
+          this.glyphs.push(glyph);
+        });
+      }
     },
     async fetchNijil(kanji: string, delegate = false) {
-      const fetchUrl = `https://lab.nijl.ac.jp/jikei/api/char/search?delegate=${delegate?"true":"false"}&limit=-1&q=${kanji}`;
+      const fetchUrl = `https://lab.nijl.ac.jp/jikei/api/char/search?delegate=${
+        delegate ? "true" : "false"
+      }&limit=-1&q=${kanji}`;
       const { data } = await useFetch<Nijil>(fetchUrl, {
         initialCache: false,
         server: false,
@@ -255,56 +276,59 @@ export const useGlyphStore = defineStore("glyphs", {
   },
 });
 
-
 function zenkakuConv(str) {
-  return str.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
+  return str.replace(/[０-９]/g, (s) =>
+    String.fromCharCode(s.charCodeAt(0) - 0xfee0)
+  );
 }
 
-async function convYearList(dates: string[]): Promise<{ [key: string]: string }> {
-  const fetchUrl = "https://ap.hutime.org/cal"
+async function convYearList(
+  dates: string[]
+): Promise<{ [key: string]: string }> {
+  const fetchUrl = "https://ap.hutime.org/cal";
   const body = {
-    "jsonrpc": "2.0",
-    "method": "conv",
-    "params": {
-      "ical": "1001.1",
-      "ocal": "101.1",
-      "otype": "year",
-      "ival": dates.join('\n')
-    }
-  }
+    jsonrpc: "2.0",
+    method: "conv",
+    params: {
+      ical: "1001.1",
+      ocal: "101.1",
+      otype: "year",
+      ival: dates.join("\n"),
+    },
+  };
   const { data } = await useFetch<Hutime>(fetchUrl, {
     method: "post",
     body: body,
-    pick: ['result'],
-  })
+    pick: ["result"],
+  });
 
-  let results = {}
+  let results = {};
   for (const [index, item] of dates.entries()) {
-    const ceDate = data.value.result[index]?.text
+    const ceDate = data.value.result[index]?.text;
     if (ceDate) {
       // const dateNum = ceDate.replace(/\D/g, "");
       // results[item] = parseInt(dateNum, 10)
-      results[item] = ceDate
-    }
-    else
-      results[item] = "Unknown"
+      results[item] = ceDate;
+    } else results[item] = "Unknown";
   }
 
-  return results
+  return results;
 }
 
-async function getUthi(hanzi:string, delegate=false, position=1){
-  const fetchUrl = `https://clioapi.hi.u-tokyo.ac.jp/shipsapi/v1/W34/character/${hanzi}?delegate=${delegate?'1':'0'}&position=${position.toString()}`;
+async function getUthi(hanzi: string, delegate = false, position = 1) {
+  const fetchUrl = `https://clioapi.hi.u-tokyo.ac.jp/shipsapi/v1/W34/character/${hanzi}?delegate=${
+    delegate ? "1" : "0"
+  }&position=${position.toString()}`;
   const { data } = await useFetch<UthiBody>(fetchUrl, {
     initialCache: false,
     server: false,
   });
-  const resultsCount = (data.value.search_results||0) > 99
+  const resultsCount = (data.value.search_results || 0) > 99;
 
   return [
     ...data.value.list,
-    ...(resultsCount? await getUthi(hanzi, delegate, position+=100):[])
-  ]
+    ...(resultsCount ? await getUthi(hanzi, delegate, (position += 100)) : []),
+  ];
 }
 
 // TODO

@@ -1,0 +1,1268 @@
+[
+  {
+    "radical": "一",
+    "unicode": "U+4E00",
+    "stroke": "1 ",
+    "count": "20"
+  },
+  {
+    "radical": "丨",
+    "unicode": "U+4E28",
+    "stroke": "1 ",
+    "count": "4"
+  },
+  {
+    "radical": "丶",
+    "unicode": "U+4E36",
+    "stroke": "1 ",
+    "count": "4"
+  },
+  {
+    "radical": "丿",
+    "unicode": "U+4E3F",
+    "stroke": "1 ",
+    "count": "11"
+  },
+  {
+    "radical": "乙",
+    "unicode": "U+4E59",
+    "stroke": "1 ",
+    "count": "190"
+  },
+  {
+    "radical": "亅",
+    "unicode": "U+4E85",
+    "stroke": "1 ",
+    "count": "7"
+  },
+  {
+    "radical": "入",
+    "unicode": "U+5165",
+    "stroke": "2 ",
+    "count": "10"
+  },
+  {
+    "radical": "二",
+    "unicode": "U+4E8C",
+    "stroke": "2 ",
+    "count": "6"
+  },
+  {
+    "radical": "亠",
+    "unicode": "U+4EA0",
+    "stroke": "2 ",
+    "count": "47"
+  },
+  {
+    "radical": "人",
+    "unicode": "U+4EBA",
+    "stroke": "2 ",
+    "count": "10"
+  },
+  {
+    "radical": "力",
+    "unicode": "U+529B",
+    "stroke": "2 ",
+    "count": "4"
+  },
+  {
+    "radical": "儿",
+    "unicode": "U+513F",
+    "stroke": "2 ",
+    "count": "16"
+  },
+  {
+    "radical": "冂",
+    "unicode": "U+5182",
+    "stroke": "2 ",
+    "count": "37"
+  },
+  {
+    "radical": "八",
+    "unicode": "U+516B",
+    "stroke": "2 ",
+    "count": "5"
+  },
+  {
+    "radical": "冖",
+    "unicode": "U+5196",
+    "stroke": "2 ",
+    "count": "100"
+  },
+  {
+    "radical": "冫",
+    "unicode": "U+51AB",
+    "stroke": "2 ",
+    "count": "11"
+  },
+  {
+    "radical": "几",
+    "unicode": "U+51E0",
+    "stroke": "2 ",
+    "count": "26"
+  },
+  {
+    "radical": "凵",
+    "unicode": "U+51F5",
+    "stroke": "2 ",
+    "count": "18"
+  },
+  {
+    "radical": "刀",
+    "unicode": "U+5200",
+    "stroke": "2 ",
+    "count": "5"
+  },
+  {
+    "radical": "勹",
+    "unicode": "U+52F9",
+    "stroke": "2 ",
+    "count": "40"
+  },
+  {
+    "radical": "匕",
+    "unicode": "U+5315",
+    "stroke": "2 ",
+    "count": "6"
+  },
+  {
+    "radical": "匚",
+    "unicode": "U+531A",
+    "stroke": "2 ",
+    "count": "8"
+  },
+  {
+    "radical": "匸",
+    "unicode": "U+5338",
+    "stroke": "2 ",
+    "count": "234"
+  },
+  {
+    "radical": "十",
+    "unicode": "U+5341",
+    "stroke": "2 ",
+    "count": "3"
+  },
+  {
+    "radical": "卜",
+    "unicode": "U+535C",
+    "stroke": "2 ",
+    "count": "314"
+  },
+  {
+    "radical": "卩",
+    "unicode": "U+5369",
+    "stroke": "2 ",
+    "count": "87"
+  },
+  {
+    "radical": "厂",
+    "unicode": "U+5382",
+    "stroke": "2 ",
+    "count": "88"
+  },
+  {
+    "radical": "厶",
+    "unicode": "U+53B6",
+    "stroke": "2 ",
+    "count": "3"
+  },
+  {
+    "radical": "又",
+    "unicode": "U+53C8",
+    "stroke": "2 ",
+    "count": "10"
+  },
+  {
+    "radical": "廴",
+    "unicode": "U+5EF4",
+    "stroke": "2 ",
+    "count": "7"
+  },
+  {
+    "radical": "囗",
+    "unicode": "U+56D7",
+    "stroke": "3 ",
+    "count": "17"
+  },
+  {
+    "radical": "口",
+    "unicode": "U+53E3",
+    "stroke": "3 ",
+    "count": "4"
+  },
+  {
+    "radical": "彡",
+    "unicode": "U+5F61",
+    "stroke": "3 ",
+    "count": "6"
+  },
+  {
+    "radical": "彳",
+    "unicode": "U+5F73",
+    "stroke": "3 ",
+    "count": "5"
+  },
+  {
+    "radical": "宀",
+    "unicode": "U+5B80",
+    "stroke": "3 ",
+    "count": "3"
+  },
+  {
+    "radical": "寸",
+    "unicode": "U+5BF8",
+    "stroke": "3 ",
+    "count": "25"
+  },
+  {
+    "radical": "弓",
+    "unicode": "U+5F13",
+    "stroke": "3 ",
+    "count": "4"
+  },
+  {
+    "radical": "巾",
+    "unicode": "U+5DFE",
+    "stroke": "3 ",
+    "count": "11"
+  },
+  {
+    "radical": "廾",
+    "unicode": "U+5EFE",
+    "stroke": "3 ",
+    "count": "18"
+  },
+  {
+    "radical": "己",
+    "unicode": "U+5DF1",
+    "stroke": "3 ",
+    "count": "53"
+  },
+  {
+    "radical": "土",
+    "unicode": "U+571F",
+    "stroke": "3 ",
+    "count": "7"
+  },
+  {
+    "radical": "尢",
+    "unicode": "U+5C22",
+    "stroke": "3 ",
+    "count": "4"
+  },
+  {
+    "radical": "山",
+    "unicode": "U+5C71",
+    "stroke": "3 ",
+    "count": "4"
+  },
+  {
+    "radical": "士",
+    "unicode": "U+58EB",
+    "stroke": "3 ",
+    "count": "20"
+  },
+  {
+    "radical": "夊",
+    "unicode": "U+590A",
+    "stroke": "3 ",
+    "count": "31"
+  },
+  {
+    "radical": "夕",
+    "unicode": "U+5915",
+    "stroke": "3 ",
+    "count": "4"
+  },
+  {
+    "radical": "大",
+    "unicode": "U+5927",
+    "stroke": "3 ",
+    "count": "39"
+  },
+  {
+    "radical": "女",
+    "unicode": "U+5973",
+    "stroke": "3 ",
+    "count": "49"
+  },
+  {
+    "radical": "子",
+    "unicode": "U+5B50",
+    "stroke": "3 ",
+    "count": "4"
+  },
+  {
+    "radical": "小",
+    "unicode": "U+5C0F",
+    "stroke": "3 ",
+    "count": "81"
+  },
+  {
+    "radical": "尸",
+    "unicode": "U+5C38",
+    "stroke": "3 ",
+    "count": "5"
+  },
+  {
+    "radical": "屮",
+    "unicode": "U+5C6E",
+    "stroke": "3 ",
+    "count": "14"
+  },
+  {
+    "radical": "巛",
+    "unicode": "U+5DDB",
+    "stroke": "3 ",
+    "count": "53"
+  },
+  {
+    "radical": "工",
+    "unicode": "U+5DE5",
+    "stroke": "3 ",
+    "count": "3"
+  },
+  {
+    "radical": "干",
+    "unicode": "U+5E72",
+    "stroke": "3 ",
+    "count": "5"
+  },
+  {
+    "radical": "幺",
+    "unicode": "U+5E7A",
+    "stroke": "3 ",
+    "count": "38"
+  },
+  {
+    "radical": "广",
+    "unicode": "U+5E7F",
+    "stroke": "3 ",
+    "count": "5"
+  },
+  {
+    "radical": "弋",
+    "unicode": "U+5F0B",
+    "stroke": "3 ",
+    "count": "13"
+  },
+  {
+    "radical": "彐",
+    "unicode": "U+5F50",
+    "stroke": "3 ",
+    "count": "251"
+  },
+  {
+    "radical": "禸",
+    "unicode": "U+79B8",
+    "stroke": "4 ",
+    "count": "3"
+  },
+  {
+    "radical": "爪",
+    "unicode": "U+722A",
+    "stroke": "4 ",
+    "count": "11"
+  },
+  {
+    "radical": "文",
+    "unicode": "U+6587",
+    "stroke": "4 ",
+    "count": "7"
+  },
+  {
+    "radical": "曰",
+    "unicode": "U+66F0",
+    "stroke": "4 ",
+    "count": "14"
+  },
+  {
+    "radical": "木",
+    "unicode": "U+6728",
+    "stroke": "4 ",
+    "count": "15"
+  },
+  {
+    "radical": "爻",
+    "unicode": "U+723B",
+    "stroke": "4 ",
+    "count": "25"
+  },
+  {
+    "radical": "欠",
+    "unicode": "U+6B20",
+    "stroke": "4 ",
+    "count": "176"
+  },
+  {
+    "radical": "心",
+    "unicode": "U+5FC3",
+    "stroke": "4 ",
+    "count": "34"
+  },
+  {
+    "radical": "水",
+    "unicode": "U+6C34",
+    "stroke": "4 ",
+    "count": "3"
+  },
+  {
+    "radical": "火",
+    "unicode": "U+706B",
+    "stroke": "4 ",
+    "count": "6"
+  },
+  {
+    "radical": "攴",
+    "unicode": "U+6534",
+    "stroke": "4 ",
+    "count": "5"
+  },
+  {
+    "radical": "犬",
+    "unicode": "U+72AC",
+    "stroke": "4 ",
+    "count": "6"
+  },
+  {
+    "radical": "日",
+    "unicode": "U+65E5",
+    "stroke": "4 ",
+    "count": "6"
+  },
+  {
+    "radical": "手",
+    "unicode": "U+624B",
+    "stroke": "4 ",
+    "count": "4"
+  },
+  {
+    "radical": "爿",
+    "unicode": "U+723F",
+    "stroke": "4 ",
+    "count": "10"
+  },
+  {
+    "radical": "止",
+    "unicode": "U+6B62",
+    "stroke": "4 ",
+    "count": "21"
+  },
+  {
+    "radical": "戈",
+    "unicode": "U+6208",
+    "stroke": "4 ",
+    "count": "3"
+  },
+  {
+    "radical": "戶",
+    "unicode": "U+6236",
+    "stroke": "4 ",
+    "count": "81"
+  },
+  {
+    "radical": "方",
+    "unicode": "U+65B9",
+    "stroke": "4 ",
+    "count": "4"
+  },
+  {
+    "radical": "支",
+    "unicode": "U+652F",
+    "stroke": "4 ",
+    "count": "3"
+  },
+  {
+    "radical": "斗",
+    "unicode": "U+6597",
+    "stroke": "4 ",
+    "count": "164"
+  },
+  {
+    "radical": "斤",
+    "unicode": "U+65A4",
+    "stroke": "4 ",
+    "count": "70"
+  },
+  {
+    "radical": "无",
+    "unicode": "U+65E0",
+    "stroke": "4 ",
+    "count": "100"
+  },
+  {
+    "radical": "月",
+    "unicode": "U+6708",
+    "stroke": "4 ",
+    "count": "2"
+  },
+  {
+    "radical": "歹",
+    "unicode": "U+6B79",
+    "stroke": "4 ",
+    "count": "2"
+  },
+  {
+    "radical": "殳",
+    "unicode": "U+6BB3",
+    "stroke": "4 ",
+    "count": "4"
+  },
+  {
+    "radical": "毋",
+    "unicode": "U+6BCB",
+    "stroke": "4 ",
+    "count": "3"
+  },
+  {
+    "radical": "比",
+    "unicode": "U+6BD4",
+    "stroke": "4 ",
+    "count": "18"
+  },
+  {
+    "radical": "毛",
+    "unicode": "U+6BDB",
+    "stroke": "4 ",
+    "count": "3"
+  },
+  {
+    "radical": "氏",
+    "unicode": "U+6C0F",
+    "stroke": "4 ",
+    "count": "87"
+  },
+  {
+    "radical": "气",
+    "unicode": "U+6C14",
+    "stroke": "4 ",
+    "count": "14"
+  },
+  {
+    "radical": "父",
+    "unicode": "U+7236",
+    "stroke": "4 ",
+    "count": "4"
+  },
+  {
+    "radical": "片",
+    "unicode": "U+7247",
+    "stroke": "4 ",
+    "count": "63"
+  },
+  {
+    "radical": "牙",
+    "unicode": "U+7259",
+    "stroke": "4 ",
+    "count": "101"
+  },
+  {
+    "radical": "牛",
+    "unicode": "U+725B",
+    "stroke": "4 ",
+    "count": "9"
+  },
+  {
+    "radical": "瓦",
+    "unicode": "U+74E6",
+    "stroke": "4 ",
+    "count": "3"
+  },
+  {
+    "radical": "矢",
+    "unicode": "U+77E2",
+    "stroke": "5 ",
+    "count": "4"
+  },
+  {
+    "radical": "癶",
+    "unicode": "U+7676",
+    "stroke": "5 ",
+    "count": "8"
+  },
+  {
+    "radical": "穴",
+    "unicode": "U+7A74",
+    "stroke": "5 ",
+    "count": "4"
+  },
+  {
+    "radical": "玄",
+    "unicode": "U+7384",
+    "stroke": "5 ",
+    "count": "208"
+  },
+  {
+    "radical": "田",
+    "unicode": "U+7530",
+    "stroke": "5 ",
+    "count": "10"
+  },
+  {
+    "radical": "目",
+    "unicode": "U+76EE",
+    "stroke": "5 ",
+    "count": "14"
+  },
+  {
+    "radical": "甘",
+    "unicode": "U+7518",
+    "stroke": "5 ",
+    "count": "3"
+  },
+  {
+    "radical": "石",
+    "unicode": "U+77F3",
+    "stroke": "5 ",
+    "count": "3"
+  },
+  {
+    "radical": "玉",
+    "unicode": "U+7389",
+    "stroke": "5 ",
+    "count": "1"
+  },
+  {
+    "radical": "瓜",
+    "unicode": "U+74DC",
+    "stroke": "5 ",
+    "count": "8"
+  },
+  {
+    "radical": "白",
+    "unicode": "U+767D",
+    "stroke": "5 ",
+    "count": "35"
+  },
+  {
+    "radical": "皿",
+    "unicode": "U+76BF",
+    "stroke": "5 ",
+    "count": "8"
+  },
+  {
+    "radical": "禾",
+    "unicode": "U+79BE",
+    "stroke": "5 ",
+    "count": "6"
+  },
+  {
+    "radical": "生",
+    "unicode": "U+751F",
+    "stroke": "5 ",
+    "count": "13"
+  },
+  {
+    "radical": "用",
+    "unicode": "U+7528",
+    "stroke": "5 ",
+    "count": "13"
+  },
+  {
+    "radical": "疋",
+    "unicode": "U+758B",
+    "stroke": "5 ",
+    "count": "6"
+  },
+  {
+    "radical": "疒",
+    "unicode": "U+7592",
+    "stroke": "5 ",
+    "count": "15"
+  },
+  {
+    "radical": "皮",
+    "unicode": "U+76AE",
+    "stroke": "5 ",
+    "count": "62"
+  },
+  {
+    "radical": "示",
+    "unicode": "U+793A",
+    "stroke": "5 ",
+    "count": "3"
+  },
+  {
+    "radical": "矛",
+    "unicode": "U+77DB",
+    "stroke": "5 ",
+    "count": "141"
+  },
+  {
+    "radical": "立",
+    "unicode": "U+7ACB",
+    "stroke": "5 ",
+    "count": "61"
+  },
+  {
+    "radical": "臼",
+    "unicode": "U+81FC",
+    "stroke": "6 ",
+    "count": "3"
+  },
+  {
+    "radical": "血",
+    "unicode": "U+8840",
+    "stroke": "6 ",
+    "count": "13"
+  },
+  {
+    "radical": "虍",
+    "unicode": "U+864D",
+    "stroke": "6 ",
+    "count": "33"
+  },
+  {
+    "radical": "艸",
+    "unicode": "U+8278",
+    "stroke": "6 ",
+    "count": "11"
+  },
+  {
+    "radical": "舛",
+    "unicode": "U+821B",
+    "stroke": "6 ",
+    "count": "64"
+  },
+  {
+    "radical": "网",
+    "unicode": "U+7F51",
+    "stroke": "6 ",
+    "count": "60"
+  },
+  {
+    "radical": "臣",
+    "unicode": "U+81E3",
+    "stroke": "6 ",
+    "count": "30"
+  },
+  {
+    "radical": "肉",
+    "unicode": "U+8089",
+    "stroke": "6 ",
+    "count": "207"
+  },
+  {
+    "radical": "至",
+    "unicode": "U+81F3",
+    "stroke": "6 ",
+    "count": "1"
+  },
+  {
+    "radical": "艮",
+    "unicode": "U+826E",
+    "stroke": "6 ",
+    "count": "12"
+  },
+  {
+    "radical": "耳",
+    "unicode": "U+8033",
+    "stroke": "6 ",
+    "count": "10"
+  },
+  {
+    "radical": "糸",
+    "unicode": "U+7CF8",
+    "stroke": "6 ",
+    "count": "4"
+  },
+  {
+    "radical": "衣",
+    "unicode": "U+8863",
+    "stroke": "6 ",
+    "count": "40"
+  },
+  {
+    "radical": "竹",
+    "unicode": "U+7AF9",
+    "stroke": "6 ",
+    "count": "26"
+  },
+  {
+    "radical": "米",
+    "unicode": "U+7C73",
+    "stroke": "6 ",
+    "count": "7"
+  },
+  {
+    "radical": "羽",
+    "unicode": "U+7FBD",
+    "stroke": "6 ",
+    "count": "49"
+  },
+  {
+    "radical": "自",
+    "unicode": "U+81EA",
+    "stroke": "6 ",
+    "count": "16"
+  },
+  {
+    "radical": "缶",
+    "unicode": "U+7F36",
+    "stroke": "6 ",
+    "count": "4"
+  },
+  {
+    "radical": "耒",
+    "unicode": "U+8012",
+    "stroke": "6 ",
+    "count": "6"
+  },
+  {
+    "radical": "襾",
+    "unicode": "U+897E",
+    "stroke": "6 ",
+    "count": "1"
+  },
+  {
+    "radical": "羊",
+    "unicode": "U+7F8A",
+    "stroke": "6 ",
+    "count": "1"
+  },
+  {
+    "radical": "老",
+    "unicode": "U+8001",
+    "stroke": "6 ",
+    "count": "2"
+  },
+  {
+    "radical": "而",
+    "unicode": "U+800C",
+    "stroke": "6 ",
+    "count": "13"
+  },
+  {
+    "radical": "聿",
+    "unicode": "U+807F",
+    "stroke": "6 ",
+    "count": "42"
+  },
+  {
+    "radical": "舌",
+    "unicode": "U+820C",
+    "stroke": "6 ",
+    "count": "12"
+  },
+  {
+    "radical": "舟",
+    "unicode": "U+821F",
+    "stroke": "6 ",
+    "count": "7"
+  },
+  {
+    "radical": "色",
+    "unicode": "U+8272",
+    "stroke": "6 ",
+    "count": "42"
+  },
+  {
+    "radical": "虫",
+    "unicode": "U+866B",
+    "stroke": "6 ",
+    "count": "28"
+  },
+  {
+    "radical": "行",
+    "unicode": "U+884C",
+    "stroke": "6 ",
+    "count": "8"
+  },
+  {
+    "radical": "酉",
+    "unicode": "U+9149",
+    "stroke": "7 ",
+    "count": "8"
+  },
+  {
+    "radical": "身",
+    "unicode": "U+8EAB",
+    "stroke": "7 ",
+    "count": "12"
+  },
+  {
+    "radical": "言",
+    "unicode": "U+8A00",
+    "stroke": "7 ",
+    "count": "8"
+  },
+  {
+    "radical": "邑",
+    "unicode": "U+9091",
+    "stroke": "7 ",
+    "count": "12"
+  },
+  {
+    "radical": "里",
+    "unicode": "U+91CC",
+    "stroke": "7 ",
+    "count": "3"
+  },
+  {
+    "radical": "貝",
+    "unicode": "U+8C9D",
+    "stroke": "7 ",
+    "count": "4"
+  },
+  {
+    "radical": "辵",
+    "unicode": "U+8FB5",
+    "stroke": "7 ",
+    "count": "4"
+  },
+  {
+    "radical": "辛",
+    "unicode": "U+8F9B",
+    "stroke": "7 ",
+    "count": "3"
+  },
+  {
+    "radical": "足",
+    "unicode": "U+8DB3",
+    "stroke": "7 ",
+    "count": "32"
+  },
+  {
+    "radical": "見",
+    "unicode": "U+898B",
+    "stroke": "7 ",
+    "count": "19"
+  },
+  {
+    "radical": "谷",
+    "unicode": "U+8C37",
+    "stroke": "7 ",
+    "count": "56"
+  },
+  {
+    "radical": "赤",
+    "unicode": "U+8D64",
+    "stroke": "7 ",
+    "count": "152"
+  },
+  {
+    "radical": "豸",
+    "unicode": "U+8C78",
+    "stroke": "7 ",
+    "count": "64"
+  },
+  {
+    "radical": "角",
+    "unicode": "U+89D2",
+    "stroke": "7 ",
+    "count": "3"
+  },
+  {
+    "radical": "麦",
+    "unicode": "U+9EA6",
+    "stroke": "7 ",
+    "count": "35"
+  },
+  {
+    "radical": "豆",
+    "unicode": "U+8C46",
+    "stroke": "7 ",
+    "count": "2"
+  },
+  {
+    "radical": "豕",
+    "unicode": "U+8C55",
+    "stroke": "7 ",
+    "count": "2"
+  },
+  {
+    "radical": "走",
+    "unicode": "U+8D70",
+    "stroke": "7 ",
+    "count": "4"
+  },
+  {
+    "radical": "車",
+    "unicode": "U+8ECA",
+    "stroke": "7 ",
+    "count": "9"
+  },
+  {
+    "radical": "辰",
+    "unicode": "U+8FB0",
+    "stroke": "7 ",
+    "count": "19"
+  },
+  {
+    "radical": "釆",
+    "unicode": "U+91C6",
+    "stroke": "7 ",
+    "count": "58"
+  },
+  {
+    "radical": "金",
+    "unicode": "U+91D1",
+    "stroke": "8 ",
+    "count": "1"
+  },
+  {
+    "radical": "隹",
+    "unicode": "U+96B9",
+    "stroke": "8 ",
+    "count": "19"
+  },
+  {
+    "radical": "阜",
+    "unicode": "U+961C",
+    "stroke": "8 ",
+    "count": "11"
+  },
+  {
+    "radical": "門",
+    "unicode": "U+9580",
+    "stroke": "8 ",
+    "count": "12"
+  },
+  {
+    "radical": "雨",
+    "unicode": "U+96E8",
+    "stroke": "8 ",
+    "count": "6"
+  },
+  {
+    "radical": "長",
+    "unicode": "U+9577",
+    "stroke": "8 ",
+    "count": "1"
+  },
+  {
+    "radical": "隶",
+    "unicode": "U+96B6",
+    "stroke": "8 ",
+    "count": "1"
+  },
+  {
+    "radical": "靑",
+    "unicode": "U+9751",
+    "stroke": "8 ",
+    "count": "2"
+  },
+  {
+    "radical": "非",
+    "unicode": "U+975E",
+    "stroke": "8 ",
+    "count": "70"
+  },
+  {
+    "radical": "骨",
+    "unicode": "U+9AA8",
+    "stroke": "9 ",
+    "count": "11"
+  },
+  {
+    "radical": "食",
+    "unicode": "U+98DF",
+    "stroke": "9 ",
+    "count": "2"
+  },
+  {
+    "radical": "風",
+    "unicode": "U+98A8",
+    "stroke": "9 ",
+    "count": "81"
+  },
+  {
+    "radical": "音",
+    "unicode": "U+97F3",
+    "stroke": "9 ",
+    "count": "2"
+  },
+  {
+    "radical": "頁",
+    "unicode": "U+9801",
+    "stroke": "9 ",
+    "count": "24"
+  },
+  {
+    "radical": "飛",
+    "unicode": "U+98DB",
+    "stroke": "9 ",
+    "count": "5"
+  },
+  {
+    "radical": "面",
+    "unicode": "U+9762",
+    "stroke": "9 ",
+    "count": "3"
+  },
+  {
+    "radical": "革",
+    "unicode": "U+9769",
+    "stroke": "9 ",
+    "count": "34"
+  },
+  {
+    "radical": "韋",
+    "unicode": "U+97CB",
+    "stroke": "9 ",
+    "count": "15"
+  },
+  {
+    "radical": "首",
+    "unicode": "U+9996",
+    "stroke": "9 ",
+    "count": "3"
+  },
+  {
+    "radical": "香",
+    "unicode": "U+9999",
+    "stroke": "9 ",
+    "count": "15"
+  },
+  {
+    "radical": "鬼",
+    "unicode": "U+9B3C",
+    "stroke": "9 ",
+    "count": "2"
+  },
+  {
+    "radical": "髟",
+    "unicode": "U+9ADF",
+    "stroke": "10 ",
+    "count": "2"
+  },
+  {
+    "radical": "馬",
+    "unicode": "U+99AC",
+    "stroke": "10 ",
+    "count": "19"
+  },
+  {
+    "radical": "鬯",
+    "unicode": "U+9B2F",
+    "stroke": "10 ",
+    "count": "6"
+  },
+  {
+    "radical": "鬥",
+    "unicode": "U+9B25",
+    "stroke": "10 ",
+    "count": "2"
+  },
+  {
+    "radical": "高",
+    "unicode": "U+9AD8",
+    "stroke": "10 ",
+    "count": "1"
+  },
+  {
+    "radical": "鹵",
+    "unicode": "U+9E75",
+    "stroke": "11 ",
+    "count": "1"
+  },
+  {
+    "radical": "鳥",
+    "unicode": "U+9CE5",
+    "stroke": "11 ",
+    "count": "54"
+  },
+  {
+    "radical": "麻",
+    "unicode": "U+9EBB",
+    "stroke": "11 ",
+    "count": "1"
+  },
+  {
+    "radical": "魚",
+    "unicode": "U+9B5A",
+    "stroke": "11 ",
+    "count": "2"
+  },
+  {
+    "radical": "鹿",
+    "unicode": "U+9E7F",
+    "stroke": "11 ",
+    "count": "3"
+  },
+  {
+    "radical": "麥",
+    "unicode": "U+9EA5",
+    "stroke": "11 ",
+    "count": "7"
+  },
+  {
+    "radical": "黑",
+    "unicode": "U+9ED1",
+    "stroke": "12 ",
+    "count": "23"
+  },
+  {
+    "radical": "黃",
+    "unicode": "U+9EC3",
+    "stroke": "12 ",
+    "count": "2"
+  },
+  {
+    "radical": "黍",
+    "unicode": "U+9ECD",
+    "stroke": "12 ",
+    "count": "4"
+  },
+  {
+    "radical": "黹",
+    "unicode": "U+9EF9",
+    "stroke": "12 ",
+    "count": "1"
+  },
+  {
+    "radical": "鼎",
+    "unicode": "U+9F0E",
+    "stroke": "12 ",
+    "count": "13"
+  },
+  {
+    "radical": "鼓",
+    "unicode": "U+9F13",
+    "stroke": "13 ",
+    "count": "4"
+  },
+  {
+    "radical": "黽",
+    "unicode": "U+9EFD",
+    "stroke": "13 ",
+    "count": "2"
+  },
+  {
+    "radical": "鼠",
+    "unicode": "U+9F20",
+    "stroke": "13 ",
+    "count": "2"
+  },
+  {
+    "radical": "齊",
+    "unicode": "U+9F4A",
+    "stroke": "14 ",
+    "count": "3"
+  },
+  {
+    "radical": "鼻",
+    "unicode": "U+9F3B",
+    "stroke": "14 ",
+    "count": "2"
+  },
+  {
+    "radical": "齒",
+    "unicode": "U+9F52",
+    "stroke": "15 ",
+    "count": "14"
+  },
+  {
+    "radical": "龍",
+    "unicode": "U+9F8D",
+    "stroke": "16 ",
+    "count": "47"
+  },
+  {
+    "radical": "龜",
+    "unicode": "U+9F9C",
+    "stroke": "17 ",
+    "count": "19"
+  }
+]
