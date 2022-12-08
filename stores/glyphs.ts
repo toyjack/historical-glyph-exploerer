@@ -4,7 +4,7 @@ import { Nijil } from "@/types/Nijil";
 import { Hutime } from "@/types/Hutime";
 import { Hng } from "@/types/HNG";
 import { Glyph } from "@/types/Glyphs";
-import { HdicSyp, HdicKtb, HdicTsj } from "@/types/Hdic";
+import { HdicSyp, HdicKtb } from "@/types/Hdic";
 import { useSettingStore as useSetting } from "./settings";
 import NijilBooks from "@/assets/json/nijil_book.json";
 
@@ -19,29 +19,17 @@ export const useGlyphStore = defineStore("glyphs", {
     dates_jpn: <string[]>[],
   }),
   getters: {
-    sortedByDate(state) {
-      let sorted = state.glyphs.sort((a, b) => a.date - b.date);
-      sorted = sorted.map((item)=>{
-        if (!item.date){
-          item.date = 9999;
-          return item
-        }
-        return item
-      })
-      console.log(sorted)
-      return sorted;
-    },
-    chartLabels() {
+    chartLabels(state) {
       const labels = [
         ...new Set(
-          this.sortedByDate.map((i) => {
+          state.sortedGlyphs.map((i) => {
             // handle the case where the year is unknown
             if (!i.date) return 9999;
             return Number(i.date);
           })
         ),
-      ].sort((a, b) => a - b);
-      labels[labels.length-1] = "不明";
+      ].sort((a: number, b: number) => a - b);
+      // labels[labels.length - 1] = "不明";
       return labels;
     },
   },
@@ -66,33 +54,35 @@ export const useGlyphStore = defineStore("glyphs", {
         ? this.fetchUthi(character, ifSearchDelegate)
         : Promise.resolve();
 
-      Promise.all([hdicPromise, hngPromise, nijilPromise, uthiPromise])
-        .then(() => {
-          this.convAllYear();
+      await Promise.all([
+        hdicPromise,
+        hngPromise,
+        nijilPromise,
+        uthiPromise,
+      ]).catch((e) => {
+        console.log(e);
+      });
+      await this.convAllYear();
+
+      this.sortedGlyphs = this.glyphs
+        .map((glyph) => {
+          if (!glyph.date) {
+            glyph.date = 9999;
+          }
+          return glyph;
         })
-        .then(() => {
-          this.sortedGlyphs = this.glyphs.sort(
-            (a: Glyph, b: Glyph) => a.date - b.date
-          );
-          this.pending = false;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+        .sort((a: Glyph, b: Glyph) => a.date - b.date);
+      this.pending = false;
     },
 
     async fetchHdic(kanji: string) {
-      // tsj
-      // https://viewer.hdic.jp/api/tsj/search?entry=%E4%BD%9B&def=
-      // https://viewer.hdic.jp/api/v1/tsj/search?entry=%E4%BA%AC&def=
       // https://viewer.hdic.jp/api/v1/tsj/imgurl?entry=%E4%BA%AC
       const tsjImgUrlFetchUrl = `https://viewer.hdic.jp/api/v1/tsj/imgurl?entry=${kanji}`;
-      const { data: tsjImgUrl, error: tsjImgUrlError } = await useFetch<String>(
+      const { data: tsjImgUrl } = await useFetch<String>(
         tsjImgUrlFetchUrl,
         { initialCache: false, server: false }
       );
 
-      // TODO: error check
       const glyph: Glyph = {
         id: "HDIC_TSJ_" + kanji,
         data_source: "hdic",
@@ -108,11 +98,10 @@ export const useGlyphStore = defineStore("glyphs", {
       };
       this.glyphs.push(glyph);
 
-      // syp
       // https://viewer.hdic.jp/api/v1/syp/search?entry=%E4%BD%9B&def=
       // https://viewer.hdic.jp/img/syp/a025a074
       const sypEntryUrl = `https://viewer.hdic.jp/api/v1/syp/search?entry=${kanji}&def=`;
-      const { data: sypEntry, error: sypEntryError } = await useFetch<
+      const { data: sypEntry } = await useFetch<
         HdicSyp[]
       >(sypEntryUrl, { initialCache: false, server: false });
       for (const item of sypEntry.value) {
@@ -133,11 +122,10 @@ export const useGlyphStore = defineStore("glyphs", {
         this.glyphs.push(glyph);
       }
 
-      // ktb
       // https://viewer.hdic.jp/api/v1/ktb/search?entry=%E4%BD%9B&def=
       // https://viewer.hdic.jp/img/ktb/1_052_A13.jpg
       const ktbEntryUrl = `https://viewer.hdic.jp/api/v1/ktb/search?entry=${kanji}&def=`;
-      const { data: ktbEntry, error: ktbEntryError } = await useFetch<
+      const { data: ktbEntry } = await useFetch<
         HdicKtb[]
       >(ktbEntryUrl, { initialCache: false, server: false });
       for (const item of ktbEntry.value) {
@@ -158,10 +146,11 @@ export const useGlyphStore = defineStore("glyphs", {
         this.glyphs.push(glyph);
       }
     },
+
     async fetchHng(kanji: string) {
       // https://search.hng-data.org/api/v2/search/character/%E4%BA%AC
       const fetchUrl = `https://search.hng-data.org/api/v2/search/character/${kanji}`;
-      const { data, error } = await useFetch<Hng>(fetchUrl, {
+      const { data } = await useFetch<Hng>(fetchUrl, {
         initialCache: false,
         server: false,
       });
@@ -261,6 +250,7 @@ export const useGlyphStore = defineStore("glyphs", {
 
       for (let glyph of this.glyphs) {
         // すでに西暦あるやつを飛ばす
+        // console.log(glyph.date)
         if (glyph.date) continue;
 
         let date = results[glyph.date_jpn];
@@ -273,24 +263,6 @@ export const useGlyphStore = defineStore("glyphs", {
           glyph.date = 9999;
         }
       }
-
-      // TODO: move to single function
-      let dates = this.glyphs.map((glyph) => {
-        if (typeof glyph.date == "string") {
-          return parseInt(glyph.date, 10);
-        } else {
-          return glyph.date;
-        }
-      });
-      dates = [...new Set(Object.values(dates))].sort();
-      if (dates[dates.length - 1] === null) {
-        dates.pop();
-      }
-      dates = dates.filter(Number);
-      dates = dates.sort((a, b) => {
-        a - b;
-      });
-      this.dates = dates;
     },
   },
 });
@@ -325,12 +297,13 @@ async function convYearList(
   for (const [index, item] of dates.entries()) {
     const ceDate = data.value.result[index]?.text;
     if (ceDate) {
-      // const dateNum = ceDate.replace(/\D/g, "");
-      // results[item] = parseInt(dateNum, 10)
       results[item] = ceDate;
-    } else results[item] = "Unknown";
+    } else {
+      results[item] = "9999";
+    }
   }
 
+  // console.log(results)
   return results;
 }
 

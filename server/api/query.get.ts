@@ -7,13 +7,17 @@ import { HdicSyp, HdicKtb, HdicTsj } from "@/types/Hdic";
 import NijilBooks from "@/data/nijil_book.json";
 
 export default defineEventHandler(async (event) => {
-  const sources = ["hdic", "hng", "uthi", "nijil"] as const;
+  const sources:string[] = ["hdic", "hng", "uthi", "nijil"];
   const query = getQuery(event);
   const character = String(query["character"]);
-  const sourceStr = String(query["sources"]) || "hdic,hng,uthi,nijil"; // default to search all
+  const sourceStr =
+    query["sources"] === undefined || query["sources"] == ""
+      ? "hdic,hng,uthi,nijil"
+      : String(query["sources"]); // default to search all
   const isDelegate: boolean = query["isDelegate"] == "true" && true; // default to true, means only search delegate characters
   const sourceList: string[] = sourceStr.split(",");
 
+  console.log(sourceStr);
   // character check
   if (character.length != 1) {
     throw createError({
@@ -23,7 +27,7 @@ export default defineEventHandler(async (event) => {
   }
   // sources check
   sourceList.forEach((source) => {
-    if (!sources.includes(source as any)) {
+    if (!sources.includes(source)) {
       // throw new Error("Invalid source");
       throw createError({
         statusCode: 400,

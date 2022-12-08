@@ -6,7 +6,7 @@ import { useGlyphStore } from '@/stores/glyphs'
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 const glyphStore = useGlyphStore()
-const { sortedByDate: glyphs, chartLabels } = storeToRefs(glyphStore)
+const { sortedGlyphs: glyphs, chartLabels } = storeToRefs(glyphStore)
 
 const hdicData = computed(()=>{
   return chartLabels.value.map(i => {
