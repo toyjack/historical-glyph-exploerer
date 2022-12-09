@@ -39,15 +39,15 @@ onUpdated(() => {
       <div class="flex flex-wrap">
         <div v-for="item of sortedGlyphs"
           class="rounded-sm shadow-lg w-1/3 md:w-1/6 flex flex-col justify-between p-1 md:p-2 bg-white border hover:border-blue-300 hover:border-2">
-          <a :href="'/glyph/' + item.id" class="cursor-pointer flex flex-col  justify-between" target="blank">
+          <!-- <a :href="'/glyph/' + item.id" class="cursor-pointer flex flex-col  justify-between" target="blank"> -->
             <img :src="item.thumbnail_url" alt="" loading="lazy" class="w-full items-center justify-start">
-          </a>
+          <!-- </a> -->
           <!-- TODO: fix the ugly data_source class -->
           <p class="leading-normal text-gray-100 text-center opacity-30"
             :class="{ 'bg-primary': item.data_source == 'uthi', 'bg-error': item.data_source == 'nijil', 'bg-accent': item.data_source == 'hdic', 'bg-secondary': item.data_source == 'hng' }">
-            <a :href="item.source_virewer_link">
+            <!-- <a :href="item.source_virewer_link"> -->
               [{{ year(item.date)}}]{{ item.book_name }}
-            </a>
+            <!-- </a> -->
           </p>
         </div>
       </div>

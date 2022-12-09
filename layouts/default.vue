@@ -31,7 +31,7 @@
     <footer
       class="bg-gradient-to-r from-fuchsia-400 to-violet-800 text-white flex flex-col items-center justify-center">
       <div class="text-sm md:text-base pt-5 md:pt-4 text-center">
-        ソースの著作権は字形のページで表示します
+        字形画像は各自の著作権に基づき提供されています
       </div>
       <div class="text-sm md:text-base p-2 md:p-4">Copyright 2022 <a href="https://researchmap.jp/liuguanwei"
           target="blank" class="underline">Guanwei Liu</a></div>

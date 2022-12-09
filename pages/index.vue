@@ -28,7 +28,7 @@ function move() {
       <div class="px-1 md:p-2 self-end items-end bg-black opacity-20 rounded ">
         <p class="text-xs md:text-base text-white underline text-right"><a
             href="https://clioimg.hi.u-tokyo.ac.jp/viewer/view/idata/000/0073/10/8/00000005?m=limit&n=20"
-            target="blank">背景画像: 愚昧記 三条実房(自筆) </a></p>
+            target="blank">背景画像: 『愚昧記』（東京大学史料編纂所所蔵、CC-BY）</a></p>
       </div>
     </div>
   </div>
