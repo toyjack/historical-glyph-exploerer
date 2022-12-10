@@ -7,7 +7,7 @@ import { HdicSyp, HdicKtb, HdicTsj } from "@/types/Hdic";
 import NijilBooks from "@/data/nijil_book.json";
 
 export default defineEventHandler(async (event) => {
-  const sources:string[] = ["hdic", "hng", "uthi", "nijil"];
+  const sources: string[] = ["hdic", "hng", "uthi", "nijil"];
   const query = getQuery(event);
   const character = String(query["character"]);
   const sourceStr =
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
   const isDelegate: boolean = query["isDelegate"] == "true" && true; // default to true, means only search delegate characters
   const sourceList: string[] = sourceStr.split(",");
 
-  console.log(sourceStr);
+  console.log(sourceList);
   // character check
   if (character.length != 1) {
     throw createError({
@@ -38,24 +38,33 @@ export default defineEventHandler(async (event) => {
 
   let results: Glyph[] = [];
 
-  for (let source of sourceList) {
-    if (source == "hdic") {
-      const hdicResult = await fetchHdic(character);
-      results = results.concat(hdicResult);
+  const hdicPromise = sourceList.includes("hdic")
+    ? await fetchHdic(character)
+    : Promise.resolve();
+  const hngPromise = sourceList.includes("hng")
+    ? await fetchHng(character)
+    : Promise.resolve();
+  const nijilPromise = sourceList.includes("nijil")
+    ? await fetchNijil(character, isDelegate)
+    : Promise.resolve();
+  const uthiPromise = sourceList.includes("uthi")
+    ? await fetchUthi(character, isDelegate)
+    : Promise.resolve();
+
+  const temp = await Promise.all([
+    hdicPromise,
+    hngPromise,
+    nijilPromise,
+    uthiPromise,
+  ]).catch((e) => {
+    console.log(e);
+  });
+  
+  temp.forEach((item) => {
+    if (item) {
+      results = results.concat(item);
     }
-    if (source == "hng") {
-      const hngResult = await fetchHng(character);
-      results = results.concat(hngResult);
-    }
-    if (source == "uthi") {
-      const uthiResult = await fetchUthi(character, isDelegate);
-      results = results.concat(uthiResult);
-    }
-    if (source == "nijil") {
-      const nijilResult = await fetchNijil(character, isDelegate);
-      results = results.concat(nijilResult);
-    }
-  }
+  });
 
   return {
     character,
