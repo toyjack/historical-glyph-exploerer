@@ -45,9 +45,9 @@ onUpdated(() => {
           <!-- TODO: fix the ugly data_source class -->
           <p class="leading-normal text-gray-100 text-center opacity-30"
             :class="{ 'bg-primary': item.data_source == 'uthi', 'bg-error': item.data_source == 'nijil', 'bg-accent': item.data_source == 'hdic', 'bg-secondary': item.data_source == 'hng' }">
-            <!-- <a :href="item.source_virewer_link"> -->
+            <a :href="item.source_virewer_link" target="_blank">
               [{{ year(item.date)}}]{{ item.book_name }}
-            <!-- </a> -->
+            </a>
           </p>
         </div>
       </div>
